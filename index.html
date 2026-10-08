@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karishma Khandelwal — Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7EFE7;
+    --surface: #FFFFFF;
+    --surface-2: #E8D2C4;
+    --maroon: #3E3239;
+    --maroon-deep: #241D21;
+    --rust: #6B5560;
+    --gold: #9E8189;
+    --brown: #6B5560;
+    --text: #3E3239;
+    --text-muted: #85707A;
+    --line: rgba(62,50,57,0.18);
+    --frame-pad: clamp(16px, 4vw, 40px);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .mono{
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  ::selection{ background: var(--maroon); color: #fff; }
+
+  /* letterbox frame */
+  .letterbox-top, .letterbox-bottom{
+    position: fixed;
+    left: 0; right: 0;
+    height: 8px;
+    background: var(--maroon);
+    z-index: 998;
+  }
+  .letterbox-top{ top: 0; }
+  .letterbox-bottom{ bottom: 0; }
+
+  header, main, footer{
+    padding-left: var(--frame-pad);
+    padding-right: var(--frame-pad);
+  }
+
+  section{ scroll-margin-top: 96px; }
+
+  /* NAV */
+  nav{
+    position: sticky;
+    top: 8px;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px var(--frame-pad);
+    background: #F7EFE7;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-name{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--maroon);
+  }
+  .nav-links{ display: flex; gap: 28px; list-style: none; }
+  .nav-links a{
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover{ color: var(--maroon); }
+
+  @media (max-width: 720px){
+    .nav-links{ display: none; }
+  }
+
+  /* HERO */
+  .hero{
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid{
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+  }
+  .hero-eyebrow{
+    color: var(--maroon);
+    font-size: 0.82rem;
+    margin-bottom: 18px;
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    line-height: 1.02;
+    color: var(--text);
+  }
+  .hero-role{
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--text-muted);
+    margin-top: 18px;
+    max-width: 46ch;
+  }
+  .hero-cta{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--maroon);
+    color: #FBF3E9;
+    padding: 13px 22px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 32px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .hero-cta:hover{
+    transform: translateY(-2px);
+    background: var(--maroon-deep);
+    box-shadow: 0 8px 24px rgba(128,0,0,0.22);
+  }
+
+  /* SECTION SHELL */
+  section{ padding: 100px 0; border-top: 1px solid var(--line); }
+  .section-inner{ max-width: 1140px; margin: 0 auto; }
+  .section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .section-head h2{ font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+  .section-tag{
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  /* ABOUT */
+  .about-text{
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    max-width: 66ch;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .about-text .accent{ color: var(--maroon); font-weight: 600; }
+  .about-meta{
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+
+  /* EXPERIENCE — timeline */
+  .timeline{ position: relative; }
+  .job{
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .job:last-child{ border-bottom: none; }
+  @media (max-width: 700px){ .job{ grid-template-columns: 1fr; gap: 10px; } }
+  .job-period{
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding-top: 4px;
+  }
+  .job-role{ font-size: 1.3rem; margin-bottom: 4px; }
+  .job-company{ color: var(--maroon); font-size: 1rem; margin-bottom: 18px; font-weight: 600; }
+  .job ul{ list-style: none; }
+  .job li{
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+    font-size: 0.98rem;
+  }
+  .job li::before{
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--rust);
+  }
+  .job li strong{ color: var(--text); font-weight: 600; }
+
+  /* PROJECTS — premium horizontal feature card */
+  .project-feature{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    align-items: stretch;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .project-feature:hover{
+    border-color: var(--maroon);
+    box-shadow: 0 20px 44px rgba(62,50,57,0.1);
+  }
+  @media (max-width: 860px){
+    .project-feature{ grid-template-columns: 1fr; }
+  }
+  @media (min-width: 861px){
+    .project-feature{ grid-template-columns: 0.82fr 1.4fr; }
+  }
+  .project-text{
+    padding: clamp(32px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .project-num{
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .project-text h3{
+    font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .project-text p{
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    max-width: 38ch;
+    margin-bottom: 32px;
+  }
+  .project-link{
+    font-size: 0.95rem;
+    color: var(--maroon);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    width: fit-content;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--maroon);
+    transition: gap 0.2s ease, opacity 0.2s ease;
+  }
+  .project-link:hover{ gap: 10px; }
+
+  /* visual mockup side — a scaled-down product screenshot */
+  .project-visual{
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(32px, 6vw, 64px);
+  }
+  .appmock-wrap{
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .appmock{
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    background: var(--surface);
+    border-radius: 10px;
+    box-shadow: 0 18px 40px rgba(62,50,57,0.16);
+    overflow: hidden;
+    font-size: 6.5px;
+  }
+  .appmock-sidebar{
+    background: var(--surface-2);
+    padding: 10px 7px;
+    border-right: 1px solid var(--line);
+  }
+  .appmock-logo{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 700;
+    font-size: 7px;
+    color: var(--text);
+    margin-bottom: 11px;
+  }
+  .appmock-logo .mark{
+    width: 8px; height: 8px;
+    border-radius: 3px;
+    background: var(--maroon);
+    flex-shrink: 0;
+  }
+  .appmock-nav-item{
+    padding: 4px 5px;
+    border-radius: 3px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+  .appmock-nav-item.active{
+    background: var(--surface);
+    color: var(--maroon);
+    font-weight: 600;
+  }
+  .appmock-main{ padding: 10px 11px 12px; }
+  .appmock-topbar{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .appmock-search{
+    flex: 1;
+    background: var(--surface-2);
+    border-radius: 999px;
+    padding: 4px 6px;
+    color: var(--text-muted);
+  }
+  .appmock-avatar{
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    flex-shrink: 0;
+  }
+  .appmock-greeting{ color: var(--text-muted); margin-bottom: 2px; }
+  .appmock-question{
+    font-weight: 700;
+    font-size: 9px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .appmock-goal-input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 4px 6px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .appmock-goal-input span{ color: var(--text-muted); }
+  .appmock-stepper{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .appmock-stepper::before{
+    content: "";
+    position: absolute;
+    top: 4px; left: 4px; right: 4px;
+    height: 1px;
+    background: var(--line);
+    z-index: 0;
+  }
+  .appmock-step{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    flex: 1;
+  }
+  .appmock-step .node{
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5px;
+    color: #fff;
+  }
+  .appmock-step.active .node{ background: var(--maroon); border-color: var(--maroon); }
+  .appmock-step span:last-child{ color: var(--text-muted); }
+  .appmock-step.active span:last-child{ color: var(--text); font-weight: 600; }
+  .appmock-section-title{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .appmock-skills-row{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .appmock-skill-card{
+    flex: 1;
+    background: var(--surface-2);
+    border-radius: 5px;
+    padding: 6px 5px;
+  }
+  .appmock-skill-card .icon{
+    width: 10px; height: 10px;
+    border-radius: 3px;
+    background: var(--surface);
+    margin-bottom: 5px;
+  }
+  .appmock-skill-card .skill-name{ color: var(--text); font-weight: 600; margin-bottom: 1px; }
+  .appmock-skill-card .skill-level{ color: var(--text-muted); }
+  .appmock-roadmap{
+    background: var(--surface-2);
+    border-radius: 5px;
+    padding: 6px 7px;
+  }
+  .roadmap-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .roadmap-head .progress{ color: var(--text-muted); font-weight: 400; }
+  .roadmap-item{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 0;
+    color: var(--text-muted);
+  }
+  .roadmap-item .tick{
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: 1.3px solid var(--line);
+    flex-shrink: 0;
+  }
+  .roadmap-item.done .tick{ background: var(--maroon); border-color: var(--maroon); }
+  .roadmap-item.done{ color: var(--text); }
+  .appmock-float{
+    position: absolute;
+    right: -12px;
+    bottom: -14px;
+    width: 100px;
+    background: var(--surface);
+    border-radius: 7px;
+    box-shadow: 0 12px 24px rgba(62,50,57,0.2);
+    padding: 8px 9px;
+    font-size: 5.5px;
+  }
+  @media (max-width: 560px){ .appmock-float{ display: none; } }
+  .float-head{ font-weight: 700; color: var(--text); margin-bottom: 5px; }
+  .float-row{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 0;
+    color: var(--text-muted);
+  }
+  .float-row .float-dot{
+    width: 9px; height: 9px;
+    border-radius: 3px;
+    background: var(--surface-2);
+    flex-shrink: 0;
+  }
+  .frame-empty h3{ color: var(--text-muted); font-weight: 500; }
+
+  /* SKILLS */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 88px);
+  }
+  @media (max-width: 760px){ .skills-grid{ grid-template-columns: 1fr; gap: 56px; } }
+  .skill-group-head{
+    margin-bottom: 28px;
+  }
+  .skill-group-bar{
+    width: 36px;
+    height: 3px;
+    background: var(--maroon);
+    margin-bottom: 16px;
+  }
+  .skill-group h3{
+    font-size: 1.35rem;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .skill-group-sub{
+    font-size: 0.86rem;
+    color: var(--text-muted);
+  }
+  .skill-list{
+    display: flex;
+    flex-direction: column;
+  }
+  .skill-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.25s ease, color 0.25s ease;
+  }
+  .skill-list .skill-row:first-child{ padding-top: 0; }
+  .skill-row:hover{
+    padding-left: 8px;
+    border-bottom-color: var(--maroon);
+  }
+  .skill-row .skill-name{
+    font-size: 1.02rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .skill-row .skill-idx{
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  /* EDUCATION */
+  .edu-item{
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .edu-item:last-child{ border-bottom: none; }
+  @media (max-width: 700px){ .edu-item{ grid-template-columns: 1fr; gap: 6px; } }
+  .edu-period{ color: var(--text-muted); font-size: 0.85rem; }
+  .edu-degree{ font-size: 1.1rem; margin-bottom: 2px; }
+  .edu-school{ color: var(--text-muted); font-size: 0.94rem; }
+
+  /* CONTACT / FOOTER */
+  footer{
+    padding-top: 90px;
+    padding-bottom: 60px;
+    border-top: 1px solid var(--line);
+  }
+  .contact-inner{
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .contact-inner h2{
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    max-width: 12ch;
+    color: var(--maroon);
+  }
+  .contact-meta{ display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .contact-meta a{
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .contact-meta a:hover{ color: var(--maroon); border-color: var(--maroon); }
+  .footer-note{
+    max-width: 1140px;
+    margin: 60px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="letterbox-top"></div>
+<div class="letterbox-bottom"></div>
+
+<nav>
+  <div class="nav-name">Karishma</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow mono">Product Manager</div>
+      <h1>Karishma Khandelwal</h1>
+      <p class="hero-role">I build AI products that make complex creative workflows simple.</p>
+      <a href="#contact" class="hero-cta">Get in touch →</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>About</h2>
+      </div>
+      <p class="about-text">Over <span class="accent">2+ years</span>, I've worked across AI, video, B2C products, growth, and analytics — taking products from problem discovery and PRDs to launch, experimentation, and post-launch optimization.</p>
+      <p class="about-text">Currently, I'm building AI-powered video experiences at Intellemo, where I work across the journey from idea → script → storyboard → video.</p>
+      <div class="about-meta mono">2+ years experience · AI Products · B2C · Growth · Analytics</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Projects</h2>
+      </div>
+
+      <div class="project-feature">
+        <div class="project-text">
+          <div class="project-num mono">Project -1</div>
+          <h3>Pathly — AI-Powered Career Roadmap</h3>
+          <p>Pathly turns career goals into personalized learning paths with AI-recommended skills and courses.</p>
+          <a href="#" class="project-link" target="_blank" rel="noopener">View →</a>
+        </div>
+        <div class="project-visual">
+          <div class="appmock-wrap">
+            <div class="appmock">
+              <div class="appmock-sidebar">
+                <div class="appmock-logo"><span class="mark"></span>Pathly</div>
+                <div class="appmock-nav-item active">Home</div>
+                <div class="appmock-nav-item">My Path</div>
+                <div class="appmock-nav-item">Courses</div>
+                <div class="appmock-nav-item">Resources</div>
+                <div class="appmock-nav-item">Settings</div>
+              </div>
+              <div class="appmock-main">
+                <div class="appmock-topbar">
+                  <div class="appmock-search">Search skills, courses, or anything…</div>
+                  <div class="appmock-avatar"></div>
+                </div>
+                <div class="appmock-greeting">Hi there! 👋</div>
+                <div class="appmock-question">What's your career goal?</div>
+                <div class="appmock-goal-input">Become a Product Designer <span>✎</span></div>
+                <div class="appmock-stepper">
+                  <div class="appmock-step active"><span class="node">✓</span><span>Goal</span></div>
+                  <div class="appmock-step active"><span class="node"></span><span>Skills</span></div>
+                  <div class="appmock-step"><span class="node"></span><span>Courses</span></div>
+                  <div class="appmock-step"><span class="node"></span><span>Roadmap</span></div>
+                </div>
+                <div class="appmock-section-title">✦ AI Recommended Skills</div>
+                <div class="appmock-skills-row">
+                  <div class="appmock-skill-card"><div class="icon"></div><div class="skill-name">User Research</div><div class="skill-level">Beginner</div></div>
+                  <div class="appmock-skill-card"><div class="icon"></div><div class="skill-name">Interaction Design</div><div class="skill-level">Intermediate</div></div>
+                  <div class="appmock-skill-card"><div class="icon"></div><div class="skill-name">Prototyping</div><div class="skill-level">Intermediate</div></div>
+                </div>
+                <div class="appmock-roadmap">
+                  <div class="roadmap-head"><span>Your Learning Roadmap</span><span class="progress">2/4</span></div>
+                  <div class="roadmap-item done"><span class="tick"></span>Understand the basics of UX</div>
+                  <div class="roadmap-item done"><span class="tick"></span>Build user research skills</div>
+                  <div class="roadmap-item"><span class="tick"></span>Learn interaction design</div>
+                  <div class="roadmap-item"><span class="tick"></span>Practice with real projects</div>
+                </div>
+              </div>
+            </div>
+            <div class="appmock-float">
+              <div class="float-head">Top Courses for You</div>
+              <div class="float-row"><span class="float-dot"></span>UX Research Fundamentals</div>
+              <div class="float-row"><span class="float-dot"></span>Advanced Figma for Designers</div>
+              <div class="float-row"><span class="float-dot"></span>Design Thinking for Teams</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <span class="section-tag mono">2024 — Present</span>
+      </div>
+      <div class="timeline">
+
+        <div class="job">
+          <div class="job-period mono">Oct 2025 —<br>Present</div>
+          <div>
+            <div class="job-role">Associate Product Manager</div>
+            <div class="job-company">Intellemo · Gurugram</div>
+            <ul>
+              <li>Owned the end-to-end <strong>AI Story feature</strong> — story creation, script generation, characters, voice, storyboard, and final video output.</li>
+              <li>Led the <strong>AI Recommendation feature</strong>, suggesting relevant characters and elements based on story context, improving engagement by 40%.</li>
+              <li>Built <strong>AI Script Generation</strong>, letting users generate and revise scripts from a raw idea, cutting time-to-story by 30%.</li>
+              <li>Designed the <strong>Story Revision workflow</strong> for scene-level edits that preserve story and character consistency, reducing revision effort by 60%.</li>
+              <li>Shipped a <strong>Storyboard Preview &amp; Paywall flow</strong> letting users preview frames before full rendering — cutting generation costs and taking daily purchases from 1 to 4–5 a day.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-period mono">Apr 2024 —<br>Oct 2025</div>
+          <div>
+            <div class="job-role">Product Executive</div>
+            <div class="job-company">Songdew · Gurugram</div>
+            <ul>
+              <li>Led the <strong>Playlist Pitching Tool</strong> from discovery to post-launch analysis, driving a 20% boost in active engagement.</li>
+              <li>Designed and launched a <strong>Referral Program</strong> with viral incentive structures, adding 10% to revenue in one quarter.</li>
+              <li>Analyzed user behavior via Google Analytics and SQL to find engagement triggers, driving a 25% revenue increase through targeted updates.</li>
+              <li>Ran iterative <strong>A/B tests</strong> and UX fixes in Figma, lifting feature conversion by 10% and reducing churn.</li>
+              <li>Translated data insights into user stories and managed the backlog to align teams around quarterly growth goals.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-head">
+            <div class="skill-group-bar"></div>
+            <h3>Product</h3>
+          </div>
+          <div class="skill-list">
+            <div class="skill-row"><span class="skill-name">Product Strategy &amp; Roadmapping</span></div>
+            <div class="skill-row"><span class="skill-name">Product Development</span></div>
+            <div class="skill-row"><span class="skill-name">PRD Writing &amp; Feature Prioritization</span></div>
+            <div class="skill-row"><span class="skill-name">User Story Mapping &amp; UAT</span></div>
+            <div class="skill-row"><span class="skill-name">Growth &amp; Experimentation</span></div>
+            <div class="skill-row"><span class="skill-name">Stakeholder Management</span></div>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-head">
+            <div class="skill-group-bar"></div>
+            <h3>Technical &amp; Analytics</h3>
+          </div>
+          <div class="skill-list">
+            <div class="skill-row"><span class="skill-name">Google Analytics &amp; Tag Manager</span></div>
+            <div class="skill-row"><span class="skill-name">SQL</span></div>
+            <div class="skill-row"><span class="skill-name">Power BI</span></div>
+            <div class="skill-row"><span class="skill-name">A/B Testing</span></div>
+            <div class="skill-row"><span class="skill-name">Figma</span></div>
+            <div class="skill-row"><span class="skill-name">Excel</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Education</h2>
+      </div>
+      <div class="edu-item">
+        <div class="edu-period mono">2022 — 2024</div>
+        <div>
+          <div class="edu-degree">Master of Science, Mathematics</div>
+          <div class="edu-school">Department of Mathematics, University of Delhi · New Delhi</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-period mono">2019 — 2022</div>
+        <div>
+          <div class="edu-degree">Bachelor of Science, Mathematics</div>
+          <div class="edu-school">Deen Dayal Upadhyaya College, University of Delhi · New Delhi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="contact-inner">
+    <h2>Let's build something.</h2>
+    <div class="contact-meta">
+      <a href="mailto:karishmakhandelwal15@gmail.com">karishmakhandelwal15@gmail.com</a>
+      <a href="tel:+918459095077">+91 84590 95077</a>
+      <a href="#" onclick="return false;">LinkedIn ↗</a>
+      <a href="#" onclick="return false;">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="footer-note">
+    <span>Karishma Khandelwal — Product Manager</span>
+    <span class="mono">Gurugram, IN</span>
+  </div>
+</footer>
+
+</body>
+</html>
